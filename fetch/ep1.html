@@ -13,8 +13,8 @@
      <button onclick="deleteData()">del</button>
 
 
-     <div id="showdata"></div>
-     <div id="showpic"></div>
+     <div id="showdata">xxx</div>
+     <div id="showpic"><a href="https://www.dcnewsnow.com/news/us-and-world/cats-classified-as-invasive-alien-species-by-scientific-institute/"></a></div>
     
       <script>
         var AllData =  []
@@ -24,7 +24,7 @@
             let pic=document.getElementById(`pic`).value
         
 
-      fetch(`https://crudcrud.com/api/ae8a5b09a5aa482aa43ab5fc7d751850/test`,
+      fetch(`https://crudcrud.com/api/b1278d79e29f4237af3d37715753fc50/test`,
       
       {   method: "POST",
           headers: {"Content-Type": "application/json"},
@@ -35,18 +35,27 @@
   }
 
     function showData(){
-      fetch(`https://crudcrud.com/api/ae8a5b09a5aa482aa43ab5fc7d751850/test`,
+      fetch(`https://crudcrud.com/api/b1278d79e29f4237af3d37715753fc50/test`,
       {
         method:"GET",
         headers: {"Content-Type":"application/json"}
       })
       .then(res => res.json())
       .then(data => AllData=data)
+      .then(print())
+    }
+
+    function print(){
+      for(let i=0;i<AllData.length;i++){
+      document.getElementById(`showdata`).innerHTML=`<p>Data: ${AllData[i].name.objData}</p>`
+      document.getElementById(`showpic`).innerHTML=`<a href="${AllData[i].name.objPic}"></a>`
+    
+      }
     }
 
     function deleteData(){
       for(let i=0;i<AllData.length;i++){
-      fetch(`https://crudcrud.com/api/ae8a5b09a5aa482aa43ab5fc7d751850/test/${AllData[i]._id}`,
+      fetch(`https://crudcrud.com/api/b1278d79e29f4237af3d37715753fc50/test/${AllData[i]._id}`,
       {
         method:"DELETE"
       })
