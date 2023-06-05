@@ -1,0 +1,29 @@
+<html>
+    <hrad>
+        <title>fetch ep.1 (input+display picture,data)</title>
+    </hrad>
+    <body>
+    <p>Data</p>
+     <input id="data"  placeholder="enter name">
+     <br>
+     <p>url</p>
+     <input  id="pic"  placeholder="input url">
+    <br>
+     <button onclick="show()">submit</button>
+
+
+     <div id="showdata"></div>
+     <div id="showpic"></div>
+    
+      <script>
+        function show(){
+            let data=document.getElementById(`data`).value
+            let pic=document.getElementById(`pic`).value
+            
+            document.getElementById(`showdata`).innerHTML = data
+            document.getElementById(`showpic`).innerHTML=pic
+        }
+      </script>
+    </body>
+
+</html
