@@ -9,21 +9,50 @@
      <p>url</p>
      <input  id="pic"  placeholder="input url">
     <br>
-     <button onclick="show()">submit</button>
+     <button onclick="push()">submit</button>
+     <button onclick="deleteData()">del</button>
 
 
      <div id="showdata"></div>
      <div id="showpic"></div>
     
       <script>
-        function show(){
+        var AllData =  []
+
+        function push(){
             let data=document.getElementById(`data`).value
             let pic=document.getElementById(`pic`).value
-            
-            document.getElementById(`showdata`).innerHTML = data
-            document.getElementById(`showpic`).innerHTML=pic
-        }
-      </script>
+        
+
+      fetch(`https://crudcrud.com/api/ae8a5b09a5aa482aa43ab5fc7d751850/test`,
+      
+      {   method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify({
+          name: {"objData":data,"objPic":pic}
+      })
+    }).then(showData())
+  }
+
+    function showData(){
+      fetch(`https://crudcrud.com/api/ae8a5b09a5aa482aa43ab5fc7d751850/test`,
+      {
+        method:"GET",
+        headers: {"Content-Type":"application/json"}
+      })
+      .then(res => res.json())
+      .then(data => AllData=data)
+    }
+
+    function deleteData(){
+      for(let i=0;i<AllData.length;i++){
+      fetch(`https://crudcrud.com/api/ae8a5b09a5aa482aa43ab5fc7d751850/test/${AllData[i]._id}`,
+      {
+        method:"DELETE"
+      })
+    }
+    }
+</script>
     </body>
 
-</html
+</html>
